@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
-
-export const useSettings = defineStore('settings', {
+export const useStorage = defineStore('settings', {
     state: () => ({
         user: true
     }),

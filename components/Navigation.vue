@@ -38,11 +38,11 @@
     </nav>
 </template>
 <script setup>
-import { useSettings } from "../storage";
-const settings = useSettings()
+import { useStorage } from "../storage";
+const settings = useStorage();
 </script>
 <style>
-.router-link-active {
+li .router-link-active {
     @apply text-gray-600;
 }
 </style>
