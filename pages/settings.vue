@@ -1,6 +1,6 @@
 <template>
   <div class="text-center w-[50%] mx-auto">
-    <h2>Your Settings</h2>
+    <h2 class="xl:text-4xl text-2xl  leading-normal">Your Settings</h2>
     <form class="flex flex-col gap-5">
       <input type="text" placeholder="" />
       <input

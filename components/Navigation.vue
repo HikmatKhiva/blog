@@ -1,0 +1,48 @@
+<template>
+    <nav>
+        <ul v-if="settings.user" class="flex gap-5">
+            <li>
+                <NuxtLink to="/">Home</NuxtLink>
+            </li>
+            <li>
+                <NuxtLink to="/editor">
+                    <Icon name="ion:compose" />
+                    New Post
+                </NuxtLink>
+            </li>
+            <li>
+                <NuxtLink to="/settings">
+                    <Icon name="material-symbols:settings-rounded" />
+                    Settings
+                </NuxtLink>
+            </li>
+            <li>
+                <NuxtLink to="/profile/user">Profile</NuxtLink>
+            </li>
+        </ul>
+        <ul v-else class="flex gap-5">
+            <li>
+                <NuxtLink class="text-gray-200" to="/">Home</NuxtLink>
+            </li>
+            <li>
+                <NuxtLink class="text-gray-200" to="/login">
+                    Sign In
+                </NuxtLink>
+            </li>
+            <li>
+                <NuxtLink class="text-gray-200" to="/register">
+                    Sign Up
+                </NuxtLink>
+            </li>
+        </ul>
+    </nav>
+</template>
+<script setup>
+import { useSettings } from "../storage";
+const settings = useSettings()
+</script>
+<style>
+.router-link-active {
+    @apply text-gray-600;
+}
+</style>
