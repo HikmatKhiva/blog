@@ -15,15 +15,15 @@
     <footer class="py-5 bg-gray-200 mt-3">
       <div class="container mx-auto">
         <p class="flex items-center text-sm gap-2">
-          <NuxtLink to="/" class="text-green-500 brand inline-block relative">
+          <span class="text-green-500 brand inline-block relative">
             NuxtBlog
             <hr class="animation__logo" />
-          </NuxtLink>
+          </span>
           ©2023 Author
-          <NuxtLink class="brand text-green-500" to="https://hikmatbek.uz">
+          <a class="brand text-green-500" href="https://hikmatbek.uz">
             Hikmat
             <hr class="animation__logo" />
-          </NuxtLink>
+          </a>
         </p>
       </div>
     </footer>

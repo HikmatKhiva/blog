@@ -1,48 +1,46 @@
 <template>
-    <nav>
-        <ul v-if="settings.user" class="flex gap-5">
-            <li>
-                <NuxtLink to="/">Home</NuxtLink>
-            </li>
-            <li>
-                <NuxtLink to="/editor">
-                    <Icon name="ion:compose" />
-                    New Post
-                </NuxtLink>
-            </li>
-            <li>
-                <NuxtLink to="/settings">
-                    <Icon name="material-symbols:settings-rounded" />
-                    Settings
-                </NuxtLink>
-            </li>
-            <li>
-                <NuxtLink to="/profile/user">Profile</NuxtLink>
-            </li>
-        </ul>
-        <ul v-else class="flex gap-5">
-            <li>
-                <NuxtLink class="text-gray-200" to="/">Home</NuxtLink>
-            </li>
-            <li>
-                <NuxtLink class="text-gray-200" to="/login">
-                    Sign In
-                </NuxtLink>
-            </li>
-            <li>
-                <NuxtLink class="text-gray-200" to="/register">
-                    Sign Up
-                </NuxtLink>
-            </li>
-        </ul>
-    </nav>
+  <nav>
+    <ul v-if="state.user" class="flex gap-5">
+      <li>
+        <NuxtLink to="/">Home</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/editor">
+          <Icon name="ion:compose" />
+          New Post
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/settings">
+          <Icon name="material-symbols:settings-rounded" />
+          Settings
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/profile/user">{{
+          state.user?.user_metadata?.userName
+        }}</NuxtLink>
+      </li>
+    </ul>
+    <ul v-else class="flex gap-5">
+      <li>
+        <NuxtLink class="text-gray-200" to="/">Home</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink class="text-gray-200" to="/login"> Sign In </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink class="text-gray-200" to="/register"> Sign Up </NuxtLink>
+      </li>
+    </ul>
+  </nav>
 </template>
 <script setup>
 import { useStorage } from "../storage";
-const settings = useStorage();
+const state = useStorage();
 </script>
 <style>
 li .router-link-active {
-    @apply text-gray-600;
+  @apply text-gray-600;
 }
 </style>
