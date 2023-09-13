@@ -17,7 +17,7 @@
         </NuxtLink>
       </li>
       <li>
-        <NuxtLink to="/profile/user">{{
+        <NuxtLink :to="'/profile/' + state.user?.user_metadata?.userName">{{
           state.user?.user_metadata?.userName
         }}</NuxtLink>
       </li>

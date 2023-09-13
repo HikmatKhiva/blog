@@ -10,6 +10,7 @@
       <input
         type="text"
         v-model="article"
+        class="border rounded focus:border-blue-200 outline-none flex-grow p-2"
         placeholder="What's this article about?"
       />
       <textarea

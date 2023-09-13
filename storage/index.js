@@ -14,7 +14,7 @@ export const useStorage = defineStore("user", () => {
   };
   const authChange = () => {
     client.auth.onAuthStateChange((event, session) => {
-      user.value = session.user;
+      user.value = session?.user ? session?.user : null;
     });
   };
 

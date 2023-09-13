@@ -71,6 +71,15 @@ const handleSignUp = async () => {
         },
       },
     });
+    console.log(data.user);
+    await client
+      .from("users")
+      .insert([
+        { id: data.user.id },
+        { username: userName.value },
+        { email: email.value },
+      ])
+      .select("*");
     if (data) {
       state.login(data);
     }

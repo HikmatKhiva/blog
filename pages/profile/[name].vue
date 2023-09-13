@@ -6,11 +6,11 @@
                 <div class="flex flex-col">
                     <Icon name="uiw:smile" class="self-center" size="50" />
                     <h3 class="self-center my-2 ">{{ params.name }}</h3>
-                    <button
+                    <NuxtLink to="/settings"
                         class="flex items-center gap-1 self-end border text-xs px-2 text-[#999] p-1 rounded hover:bg-gray-300 hover:text-gray-100 transition-all duration-300">
                         <Icon name="material-symbols:settings-rounded" size="16" />
                         Edit Profile Settings
-                    </button>
+                    </NuxtLink>
                 </div>
             </div>
         </div>
@@ -27,12 +27,10 @@
                     <Blog />
                     <Blog />
                 </div>
-
             </div>
         </div>
     </section>
 </template>
-
 <script setup>
 const { params } = useRoute();
 </script>
