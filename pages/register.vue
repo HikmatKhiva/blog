@@ -11,18 +11,18 @@
       <input
         type="text"
         placeholder="UserName"
-        v-model="userName"
+        v-model="user.username"
         class="p-3 outline-none px-4 border-2 rounded focus:border-blue-200"
       />
       <input
         type="text"
-        v-model="email"
+        v-model="user.email"
         placeholder="Email"
         class="p-3 outline-none px-4 border-2 rounded focus:border-blue-200"
       />
       <label for="password" class="flex-grow relative">
         <input
-          v-model="password"
+          v-model="user.password"
           :type="passwordView ? 'text' : 'password'"
           id="password"
           placeholder="Password"
@@ -45,46 +45,18 @@
   </div>
 </template>
 <script setup>
-import { useStorage } from "../storage";
-const state = useStorage();
-const client = useSupabaseClient();
+import { useAuth } from "../composables/auth";
 const passwordView = ref(false);
+const user = reactive({
+  username: "",
+  email: "",
+  password: "",
+});
 const userName = ref("");
 const email = ref("");
 const password = ref("");
-
+const { register } = useAuth();
 const handleSignUp = async () => {
-  try {
-    if (
-      !userName.value.length ||
-      !email.value.length ||
-      !password.value.length
-    ) {
-      return;
-    }
-    const { data } = await client.auth.signUp({
-      email: email.value,
-      password: password.value,
-      options: {
-        data: {
-          userName: userName.value,
-        },
-      },
-    });
-    console.log(data.user);
-    await client
-      .from("users")
-      .insert([
-        { id: data.user.id },
-        { username: userName.value },
-        { email: email.value },
-      ])
-      .select("*");
-    if (data) {
-      state.login(data);
-    }
-  } catch (err) {
-    console.log(err);
-  }
+  const {} = await register(user);
 };
 </script>

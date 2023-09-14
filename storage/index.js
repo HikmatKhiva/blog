@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 export const useStorage = defineStore("user", () => {
   const user = ref(null);
   const client = useSupabaseClient();
-
   const login = async (email, password) => {
     const { data } = await client.auth.signInWithPassword({
       email,
@@ -15,7 +14,9 @@ export const useStorage = defineStore("user", () => {
   const authChange = () => {
     client.auth.onAuthStateChange((event, session) => {
       user.value = session?.user ? session?.user : null;
+      console.log(session);
     });
+
   };
 
   onMounted(() => authChange());
