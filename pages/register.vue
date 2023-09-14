@@ -52,11 +52,9 @@ const user = reactive({
   email: "",
   password: "",
 });
-const userName = ref("");
-const email = ref("");
-const password = ref("");
 const { register } = useAuth();
 const handleSignUp = async () => {
-  const {} = await register(user);
+  const { msg } = await register(user);
+  console.log(msg);
 };
 </script>

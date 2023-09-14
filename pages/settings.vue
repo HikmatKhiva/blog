@@ -4,21 +4,29 @@
     <form class="flex flex-col gap-3 mt-5">
       <input
         type="text"
+        id="username"
         class="border rounded focus:border-blue-200 outline-none flex-grow p-2"
         placeholder="UserName"
-        v-model="UserName"
+        v-model="userData.username"
+        name="username"
+        autocomplete="false"
       />
       <textarea
         class="border rounded focus:border-blue-200 outline-none flex-grow p-2 resize-none"
         placeholder="Short bio about you"
         rows="10"
-        v-model="bio"
+        id="bio"
+        name="bio"
+        v-model="userData.bio"
       ></textarea>
       <input
         type="text"
+        id="email"
+        name="email"
+        autocomplete="true"
         class="border rounded focus:border-blue-200 outline-none flex-grow p-2"
         placeholder="Email"
-        v-model="email"
+        v-model="userData.email"
       />
       <label for="password" class="relative flex">
         <input
@@ -26,11 +34,13 @@
           id="password"
           class="border rounded focus:border-blue-200 outline-none flex-grow p-2"
           placeholder="Password"
-          v-model="password"
+          name="password"
+          v-model="userData.password"
         />
         <button
           @click="passwordView = !passwordView"
           type="button"
+          name="button"
           class="absolute top-1/2 -translate-y-1/2 right-3"
           :class="{ 'opacity-50': passwordView }"
         >
@@ -47,11 +57,12 @@
 </template>
 
 <script setup>
-import { useStorage } from "../storage";
-const state = useStorage();
+const user = useSupabaseUser();
 const passwordView = ref(false);
-const email = ref(state.user?.email || "");
-const UserName = ref(state.user?.user_metadata?.userName || "");
-const password = ref("");
-const bio = ref("");
+const userData = reactive({
+  username: user?.value.user_metadata?.username || "",
+  email: user?.value.email || "",
+  bio: user?.value.user_metadata?.bio || "",
+  password: "",
+});
 </script>

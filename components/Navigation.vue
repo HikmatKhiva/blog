@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <ul v-if="state.user" class="flex gap-5">
+    <ul v-if="user" class="flex gap-5">
       <li>
         <NuxtLink to="/">Home</NuxtLink>
       </li>
@@ -17,8 +17,8 @@
         </NuxtLink>
       </li>
       <li>
-        <NuxtLink :to="'/profile/' + state.user?.user_metadata?.userName">{{
-          state.user?.user_metadata?.userName
+        <NuxtLink :to="'/profile/' + user?.user_metadata?.username">{{
+          user?.user_metadata?.username
         }}</NuxtLink>
       </li>
     </ul>
@@ -36,8 +36,7 @@
   </nav>
 </template>
 <script setup>
-import { useStorage } from "../storage";
-const state = useStorage();
+const user = useSupabaseUser();
 </script>
 <style>
 li .router-link-active {
