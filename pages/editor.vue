@@ -1,27 +1,35 @@
 <template>
   <div class="w-[60%] mx-auto">
-    <form class="flex flex-col mt-5 gap-5">
+    <form @submit.prevent="PostBlog" class="flex flex-col mt-5 gap-5">
       <input
         type="text"
-        v-model="title"
+        name="title"
+        id="title"
+        v-model="newBlog.title"
         class="border rounded focus:border-blue-200 outline-none flex-grow p-2"
         placeholder="Article Title"
       />
       <input
         type="text"
-        v-model="article"
+        v-model="newBlog.article"
+        id="article"
+        name="article"
         class="border rounded focus:border-blue-200 outline-none flex-grow p-2"
         placeholder="What's this article about?"
       />
       <textarea
-        v-model="body"
+        v-model="newBlog.body"
+        id="article_body"
+        name="article_body"
         class="border rounded focus:border-blue-200 outline-none flex-grow p-2 resize-none"
         placeholder="Write your article (in markdown)"
         rows="10"
       ></textarea>
       <input
         type="text"
-        v-model="tag"
+        id="tag"
+        name="tag"
+        v-model="newBlog.tag"
         class="border rounded focus:border-blue-200 outline-none flex-grow p-2"
         placeholder="Enter tags"
       />
@@ -34,12 +42,40 @@
   </div>
 </template>
 <script setup>
-const title = ref("");
-const article = ref("");
-const body = ref("");
-const tag = ref("");
+const user = useSupabaseUser();
+const client = useSupabaseClient();
+const newBlog = reactive({
+  title: "",
+  article: "",
+  body: "",
+  tag: "",
+});
 const PostBlog = async () => {
+  if (
+    !newBlog.title.length ||
+    !newBlog.article.length ||
+    !newBlog.body.length ||
+    !newBlog.tag.length
+  ) {
+    alert("fill out input fields");
+    return;
+  }
   try {
+    const { data, status } = await client
+      .from("blog")
+      .insert([
+        {
+          title: newBlog.title,
+          article: newBlog.article,
+          body: newBlog.body,
+          tag: newBlog.tag,
+          like: 0,
+          user_id: user.value.id,
+        },
+      ])
+      .select("*");
+    console.log(data);
+    console.log(status);
   } catch (err) {
     console.log(err);
   }

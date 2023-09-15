@@ -6,19 +6,19 @@
         type="text"
         class="border rounded focus:border-blue-200 outline-none flex-grow p-2"
         placeholder="UserName"
-        v-model="UserName"
+        v-model="userData.username"
       />
       <textarea
         class="border rounded focus:border-blue-200 outline-none flex-grow p-2 resize-none"
         placeholder="Short bio about you"
         rows="10"
-        v-model="bio"
+        v-model="userData.bio"
       ></textarea>
       <input
         type="text"
         class="border rounded focus:border-blue-200 outline-none flex-grow p-2"
         placeholder="Email"
-        v-model="email"
+        v-model="userData.email"
       />
       <label for="password" class="relative flex">
         <input
@@ -26,7 +26,7 @@
           id="password"
           class="border rounded focus:border-blue-200 outline-none flex-grow p-2"
           placeholder="Password"
-          v-model="password"
+          v-model="userData.password"
         />
         <button
           @click="passwordView = !passwordView"
@@ -47,11 +47,12 @@
 </template>
 
 <script setup>
-import { useStorage } from "../storage";
-const state = useStorage();
+const user = useSupabaseUser();
 const passwordView = ref(false);
-const email = ref(state.user?.email || "");
-const UserName = ref(state.user?.user_metadata?.userName || "");
-const password = ref("");
-const bio = ref("");
+const userData = reactive({
+  email: user?.value?.email || "",
+  username: user.value?.user_metadata?.username || "",
+  bio: user.value.user_metadata?.bio || "",
+  password: "",
+});
 </script>

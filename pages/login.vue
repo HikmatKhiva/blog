@@ -7,16 +7,25 @@
     >
       Need an account?
     </NuxtLink>
-    <form @submit.prevent="handleSignIn" class="flex flex-col flex-grow gap-3">
+    <form
+      @submit.prevent="handleSubmitLogin"
+      class="flex flex-col flex-grow gap-3"
+    >
       <input
-        v-model="email"
+        v-model="user.email"
         type="text"
+        id="email"
+        name="email"
+        autocomplete="true"
+        autofocus="true"
         placeholder="Email"
         class="p-3 outline-none px-4 border-2 rounded focus:border-blue-200"
       />
       <label for="password" class="flex-grow relative">
         <input
-          v-model="password"
+          name="password"
+          autocomplete="false"
+          v-model="user.password"
           :type="passwordView ? 'text' : 'password'"
           id="password"
           placeholder="Password"
@@ -39,21 +48,20 @@
   </div>
 </template>
 <script setup>
-import { useStorage } from "../storage";
-const state = useStorage();
+import { useAuth } from "../composables/auth";
+const { login } = useAuth();
 const passwordView = ref(false);
-const client = useSupabaseClient();
-const email = ref("");
-const password = ref("");
-
-const handleSignIn = async () => {
-  try {
-    if (!email.value.length || !password.value.length) {
-      return;
-    }
-    await state.login(email.value, password.value);
-  } catch (err) {
-    console.log(err);
+const user = reactive({
+  email: "",
+  password: "",
+});
+const handleSubmitLogin = async () => {
+  const { res } = await login(user);
+  if (res.status === 200) {
+    console.log(res.msg);
+    navigateTo('/')
+  } else {
+    console.log(res.msg);
   }
 };
 </script>

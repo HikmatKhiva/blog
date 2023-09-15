@@ -1,20 +1,28 @@
 export const useAuth = () => {
   const client = useSupabaseClient();
-  const user = useSupabaseClient();
-  const loading = ref(false);
-  const error = ref(null);
+  const res = reactive({
+    msg: "",
+    status: null,
+  });
   // login
-  const login = async (email, password) => {
+  const login = async (user) => {
     try {
-      await client.auth.signInWithPassword({ email, password });
+      await client.auth.signInWithPassword({
+        email: user.email,
+        password: user.password,
+      });
+      res.msg = "success login";
+      res.status = 200;
     } catch (err) {
       console.log(err);
+      res.status = 400;
+      res.msg = "error login";
     }
+    return { res };
   };
   // logout
   //register
   const register = async (newUser) => {
-    loading.value = true;
     const { email, password, username } = newUser;
     try {
       const { data } = await client.auth.signUp({
@@ -31,13 +39,14 @@ export const useAuth = () => {
         .from("users")
         .insert([{ email: email, username: username, id: data.user.id }])
         .select("*");
-      loading.value = false;
+      res.msg = "success register";
+      res.status = 200;
     } catch (err) {
-        error.value
-      console.log(err);
+      res.msg = "error register";
+      res.status = 400;
     }
-    return { loading, msg: "success" };
+    return { res };
   };
   // onAuthStateChange
-  return { user, register, login };
+  return { register, login };
 };
