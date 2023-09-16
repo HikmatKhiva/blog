@@ -71,11 +71,10 @@ const PostBlog = async () => {
           tag: newBlog.tag,
           like: 0,
           user_id: user.value.id,
+          username: user.value?.user_metadata?.username,
         },
       ])
       .select("*");
-    console.log(data);
-    console.log(status);
   } catch (err) {
     console.log(err);
   }

@@ -1,8 +1,21 @@
 <template>
   <section id="myBlog">
-    <div class="blogs">
-      <Blog />
+    <div class="blogs" v-if="blogs.data?.length">
+      <Blog v-for="(blog, index) in blogs.data" :key="index" :blog="blog" />
     </div>
+    <p v-else-if="pending">Loading</p>
+    <p v-else>Blog not upload</p>
   </section>
 </template>
-<script setup></script>
+<script setup>
+const user = useSupabaseUser();
+const client = useSupabaseClient();
+const {
+  data: blogs,
+  error,
+  pending,
+} = await useAsyncData(
+  "blog",
+  async () => await client.from("blog").select("*").eq("user_id", user.value.id)
+);
+</script>

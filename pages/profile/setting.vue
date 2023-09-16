@@ -8,21 +8,15 @@
         class="border rounded focus:border-blue-200 outline-none flex-grow p-2"
         placeholder="UserName"
         v-model="userData.username"
-<<<<<<< HEAD:pages/profile/setting.vue
-=======
         name="username"
         autocomplete="false"
->>>>>>> cb09c2460e36a79d32c50f231d6ed75c84da2142:pages/settings.vue
       />
       <textarea
         class="border rounded focus:border-blue-200 outline-none flex-grow p-2 resize-none"
         placeholder="Short bio about you"
         rows="10"
-<<<<<<< HEAD:pages/profile/setting.vue
-=======
         id="bio"
         name="bio"
->>>>>>> cb09c2460e36a79d32c50f231d6ed75c84da2142:pages/settings.vue
         v-model="userData.bio"
       ></textarea>
       <input
@@ -40,10 +34,7 @@
           id="password"
           class="border rounded focus:border-blue-200 outline-none flex-grow p-2"
           placeholder="Password"
-<<<<<<< HEAD:pages/profile/setting.vue
-=======
           name="password"
->>>>>>> cb09c2460e36a79d32c50f231d6ed75c84da2142:pages/settings.vue
           v-model="userData.password"
         />
         <button
@@ -69,15 +60,12 @@
 const user = useSupabaseUser();
 const passwordView = ref(false);
 const userData = reactive({
-<<<<<<< HEAD:pages/profile/setting.vue
   email: user?.value?.email || "",
   username: user.value?.user_metadata?.username || "",
   bio: user.value.user_metadata?.bio || "",
-=======
   username: user?.value.user_metadata?.username || "",
   email: user?.value.email || "",
   bio: user?.value.user_metadata?.bio || "",
->>>>>>> cb09c2460e36a79d32c50f231d6ed75c84da2142:pages/settings.vue
   password: "",
 });
 </script>

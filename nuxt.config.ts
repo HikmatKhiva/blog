@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@nuxtjs/supabase",
   ],
+
   css: ["@/assets/css/main.css"],
   // Nuxt app configuration
   app: {
