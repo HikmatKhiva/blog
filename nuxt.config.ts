@@ -23,11 +23,12 @@ export default defineNuxtConfig({
         },
       ],
     },
+    pageTransition: { name: "page", mode: "out-in" },
   },
   // Supabse Configuration
   supabase: {
     url: process.env.SUPABASE_URL,
     serviceKey: process.env.SUPABASE_KEY,
-    redirect:false
+    redirect: false,
   },
 });

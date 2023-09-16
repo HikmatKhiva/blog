@@ -1,12 +1,17 @@
 <template>
   <section id="globalBlog">
-    <div class="blogs" v-if="globalBlogs.data?.length">
+    <TransitionGroup
+      tag="div"
+      name="fade"
+      class="blogs"
+      v-if="globalBlogs.data?.length"
+    >
       <Blog
         v-for="(blog, index) in globalBlogs.data"
         :key="index"
         :blog="blog"
       />
-    </div>
+    </TransitionGroup>
     <p v-else-if="pending">Loading</p>
     <p v-else>Blog not upload</p>
   </section>

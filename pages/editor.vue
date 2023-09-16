@@ -75,6 +75,11 @@ const PostBlog = async () => {
         },
       ])
       .select("*");
+    navigateTo("/");
+    newBlog.article = "";
+    newBlog.body = "";
+    newBlog.tag = "";
+    newBlog.title = "";
   } catch (err) {
     console.log(err);
   }

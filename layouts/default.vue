@@ -6,7 +6,13 @@
           NuxtBlog
           <hr class="animation__logo" />
         </NuxtLink>
-        <Navigation />
+        <Navigation class="md:block hidden" />
+        <MobileNavigation
+          :mobileMenu="mobileMenu"
+          @hide="handleCloseMobileMenu"
+          @click="handleClickMobileMenu"
+          class="md:hidden"
+        />
       </div>
     </header>
     <main class="flex-grow">
@@ -29,4 +35,8 @@
     </footer>
   </div>
 </template>
-<script setup></script>
+<script setup>
+const mobileMenu = ref(false);
+const handleCloseMobileMenu = () => (mobileMenu.value = false);
+const handleClickMobileMenu = () => (mobileMenu.value = !mobileMenu.value);
+</script>
