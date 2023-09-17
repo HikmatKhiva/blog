@@ -24,13 +24,13 @@
     </ul>
     <ul v-else class="flex gap-5">
       <li>
-        <NuxtLink class="text-gray-200" to="/">Home</NuxtLink>
+        <NuxtLink class="text-gray-400" to="/">Home</NuxtLink>
       </li>
       <li>
-        <NuxtLink class="text-gray-200" to="/login"> Sign In </NuxtLink>
+        <NuxtLink class="text-gray-400" to="/auth/login"> Sign In </NuxtLink>
       </li>
       <li>
-        <NuxtLink class="text-gray-200" to="/register"> Sign Up </NuxtLink>
+        <NuxtLink class="text-gray-400" to="/auth/register"> Sign Up </NuxtLink>
       </li>
     </ul>
   </nav>

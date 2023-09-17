@@ -5,7 +5,7 @@
         <!-- Profile Header -->
         <div class="flex flex-col">
           <Icon name="uiw:smile" class="self-center" size="50" />
-          <h3 class="self-center my-2">{{ params.name }}</h3>
+          <h3 class="self-center my-2">{{ params.name || "" }}</h3>
           <NuxtLink
             to="/profile/setting"
             class="flex items-center gap-1 self-end border md:text-xs text-[11px] px-2 text-[#999] p-1 rounded hover:bg-gray-300 hover:text-gray-100 transition-all duration-300"
@@ -47,12 +47,13 @@
   </section>
 </template>
 <script setup>
+definePageMeta({
+  middleware: "auth",
+});
 const { params } = useRoute();
 const viewBlogs = ref("myBlog");
 const user = useSupabaseUser();
+useHead({
+  title: `Profile ${params.name}`,
+});
 </script>
-<style scoped>
-.active_btn {
-  @apply border-b border-green-400 text-green-400;
-}
-</style>
