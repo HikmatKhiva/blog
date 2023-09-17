@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@nuxtjs/supabase",
   ],
+
   css: ["@/assets/css/main.css"],
   // Nuxt app configuration
   app: {
@@ -22,10 +23,12 @@ export default defineNuxtConfig({
         },
       ],
     },
+    pageTransition: { name: "page", mode: "out-in" },
   },
   // Supabse Configuration
   supabase: {
     url: process.env.SUPABASE_URL,
     serviceKey: process.env.SUPABASE_KEY,
+    redirect: false,
   },
 });

@@ -1,8 +1,5 @@
-import { defineStore } from 'pinia'
-export const useStorage = defineStore('settings', {
-    state: () => ({
-        user: true
-    }),
-    getters: {},
-    actions: {},
-})
+import { defineStore } from "pinia";
+export const useStorage = defineStore("user", () => {
+  const user = ref(null);
+  return { user };
+});

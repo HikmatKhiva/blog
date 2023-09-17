@@ -5,16 +5,42 @@
 * {
   font-family: "Poppins", sans-serif;
 }
+
 @layer components {
-    .animation__logo{
-        margin-top: 2px;
-        border-color: rgb(34 197 94 / 1);
-        transform: scale(0);
-        transition: transform .6s;
-        transform-origin: right;
-    }
-    .brand:hover > .animation__logo{
-        transform: scale(1);
-        transform-origin: left;
-    }
+  .animation__logo {
+    margin-top: 2px;
+    border-color: rgb(34 197 94 / 1);
+    transform: scale(0);
+    transition: transform 0.6s;
+    transform-origin: right;
+  }
+  .brand:hover > .animation__logo {
+    transform: scale(1);
+    transform-origin: left;
+  }
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+  transform: scale(.5);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+@media (max-width:768px) {
+  .container {
+    padding: 0 20px; 
+  }
 }
