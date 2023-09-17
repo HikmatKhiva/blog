@@ -27,6 +27,11 @@ export default defineNuxtConfig({
           content: "Hikmatbek Bekturdiyev",
         },
         {
+          id: "kewords",
+          name: "keywords",
+          content: "Hikmatbek Bekturdiyev blog nuxtjsblog supabase blog",
+        },
+        {
           id: "google-verification",
           name: "google-site-verification",
           content: process.env.GOOGLE_VERIFICATION,
