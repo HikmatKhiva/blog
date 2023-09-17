@@ -21,6 +21,21 @@ export default defineNuxtConfig({
           name: "description",
           content: "nuxtjs Blog web site",
         },
+        {
+          id: "author",
+          name: "author",
+          content: "Hikmatbek Bekturdiyev",
+        },
+        {
+          id: "google-verification",
+          name: "google-site-verification",
+          content: process.env.GOOGLE_VERIFICATION,
+        },
+        {
+          id: "yandex-verification",
+          name: "yandex-verification",
+          content: process.env.YANDEX_VERIFICATION,
+        },
       ],
     },
     pageTransition: { name: "page", mode: "out-in" },

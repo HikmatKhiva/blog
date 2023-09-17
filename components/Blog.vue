@@ -8,9 +8,9 @@
         <!-- <img src="" alt=""> -->
         <!-- UserName and date time-->
         <div class="">
-          <h3 class="md:text-lg text-sm leading-none text-green-500">
+          <h2 class="md:text-lg text-sm leading-none text-green-500">
             {{ blog?.username }}
-          </h3>
+          </h2>
           <p class="md:text-xs text-[10px] text-gray-400">Mon Dec 28 2020</p>
         </div>
       </div>

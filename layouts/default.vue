@@ -2,13 +2,15 @@
   <div class="min-h-[100vh] flex flex-col">
     <header class="py-5">
       <div class="container mx-auto flex justify-between items-center">
-        <NuxtLink
-          class="md:text-2xl text-xl text-green-500 relative brand"
-          to="/"
-        >
-          NuxtBlog
-          <hr class="animation__logo" />
-        </NuxtLink>
+        <h1>
+          <NuxtLink
+            class="md:text-2xl text-xl text-green-500 relative brand"
+            to="/"
+          >
+            NuxtBlog
+            <hr class="animation__logo" />
+          </NuxtLink>
+        </h1>
         <Navigation class="md:block hidden" />
         <MobileNavigation class="md:hidden" />
       </div>
