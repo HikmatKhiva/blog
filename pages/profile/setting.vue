@@ -14,7 +14,7 @@
         autocomplete="false"
       />
       <textarea
-        class="border  md:text-base text-sm rounded focus:border-blue-200 outline-none flex-grow p-2 resize-none"
+        class="border md:text-base text-sm rounded focus:border-blue-200 outline-none flex-grow p-2 resize-none"
         placeholder="Short bio about you"
         rows="10"
         id="bio"
@@ -65,6 +65,12 @@
   </div>
 </template>
 <script setup>
+useHead({
+  title: "Profile Settings",
+});
+definePageMeta({
+  middleware: "auth",
+});
 import { useAuth } from "../../composables/auth";
 const user = useSupabaseUser();
 const { logout } = useAuth();

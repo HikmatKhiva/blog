@@ -13,7 +13,7 @@
         <MobileNavigation class="md:hidden" />
       </div>
     </header>
-    <main class="flex-grow">
+    <main class="flex-grow flex flex-col">
       <slot />
     </main>
     <footer class="py-5 bg-gray-200 mt-3">

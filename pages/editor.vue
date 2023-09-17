@@ -42,6 +42,12 @@
   </div>
 </template>
 <script setup>
+useHead({
+  title: "New Post",
+});
+definePageMeta({
+  middleware: "auth",
+});
 const user = useSupabaseUser();
 const client = useSupabaseClient();
 const newBlog = reactive({
@@ -57,8 +63,8 @@ const PostBlog = async () => {
     !newBlog.body.length ||
     !newBlog.tag.length
   ) {
-    useNuxtApp().$toast.info("fill out input fields",{
-      transition:'flip'
+    useNuxtApp().$toast.info("fill out input fields", {
+      transition: "flip",
     });
     return;
   }

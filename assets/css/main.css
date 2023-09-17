@@ -19,6 +19,9 @@
     transform-origin: left;
   }
 }
+.active_btn {
+  @apply border-b border-green-400 text-green-400;
+}
 
 .page-enter-active,
 .page-leave-active {
@@ -28,7 +31,7 @@
 .page-leave-to {
   opacity: 0;
   filter: blur(1rem);
-  transform: scale(.5);
+  transform: scale(0.5);
 }
 .fade-enter-active,
 .fade-leave-active {
@@ -39,8 +42,8 @@
   opacity: 0;
   transform: translateY(30px);
 }
-@media (max-width:768px) {
+@media (max-width: 768px) {
   .container {
-    padding: 0 20px; 
+    padding: 0 20px;
   }
 }

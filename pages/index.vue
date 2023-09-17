@@ -3,6 +3,7 @@
     <div class="flex-grow">
       <div class="flex gap-5 border-b flex-grow">
         <button
+          v-if="user"
           type="button"
           @click="viewBlogs = 'myBlog'"
           :class="viewBlogs === 'myBlog' && 'active_btn'"
@@ -26,13 +27,13 @@
   </div>
 </template>
 <script setup>
-const viewBlogs = ref("myBlog");
 const user = useSupabaseUser();
+const viewBlogs = ref(user.value ? "myBlog" : "globalBlog");
+useHead({
+  title: "Home Page",
+});
 </script>
 <style scoped>
-.active_btn {
-  @apply border-b border-green-400 text-green-400;
-}
 .page-enter-active,
 .page-leave-active {
   transition: all 0.4s;

@@ -16,7 +16,7 @@
         class="flex-grow bg-gray-50 opacity-70"
       ></div>
       <nav
-        class="bg-gray-200 w-1/2 flex flex-col transition-all duration-300 items-center pt-10 text-center"
+        class="bg-gray-200 md:w-1/2 w-[70%] flex flex-col transition-all duration-300 items-center pt-16 text-center"
       >
         <button
           @click="handleClickMobileMenu"
@@ -49,13 +49,17 @@
         </ul>
         <ul v-else class="flex flex-col gap-5">
           <li @click="handleCloseMobileMenu">
-            <NuxtLink class="text-gray-200" to="/">Home</NuxtLink>
+            <NuxtLink class="text-gray-400" to="/">Home</NuxtLink>
           </li>
           <li @click="handleCloseMobileMenu">
-            <NuxtLink class="text-gray-200" to="/login"> Sign In </NuxtLink>
+            <NuxtLink class="text-gray-400" to="/auth/login">
+              Sign In
+            </NuxtLink>
           </li>
           <li @click="handleCloseMobileMenu">
-            <NuxtLink class="text-gray-200" to="/register"> Sign Up </NuxtLink>
+            <NuxtLink class="text-gray-400" to="/auth/register">
+              Sign Up
+            </NuxtLink>
           </li>
         </ul>
       </nav>
