@@ -19,21 +19,12 @@
           Global Feed
         </button>
       </div>
+      <!-- Blogs -->
       <MyBlog v-if="viewBlogs === 'myBlog' && user" />
       <GlobalBlog v-else />
-      <!-- Blogs -->
     </div>
-    <aside class="p-1 px-2 rounded w-[200px] bg-[#f3f3f3]">
-      <h2>Popular tags</h2>
-      <div class="flex flex-wrap gap-1 mt-2">
-        <p class="bg-gray-500 rounded-xl p-2 text-xs font-bold text-white">
-          welcome
-        </p>
-      </div>
-    </aside>
   </div>
 </template>
-
 <script setup>
 const viewBlogs = ref("myBlog");
 const user = useSupabaseUser();

@@ -8,16 +8,16 @@
         <!-- <img src="" alt=""> -->
         <!-- UserName and date time-->
         <div class="">
-          <h3 class="text-lg leading-none text-green-500">
+          <h3 class="md:text-lg text-sm leading-none text-green-500">
             {{ blog?.username }}
           </h3>
-          <p class="text-xs text-gray-400">Mon Dec 28 2020</p>
+          <p class="md:text-xs text-[10px] text-gray-400">Mon Dec 28 2020</p>
         </div>
       </div>
       <!-- Article -->
       <div class="my-2">
-        <h3 class="text-2xl">{{ blog?.article }}</h3>
-        <p class="text-sm text-gray-500">
+        <h3 class="md:text-2xl text-xl">{{ blog?.article }}</h3>
+        <p class="md:text-sm text-xs text-gray-500">
           {{ blog?.body }}
         </p>
         <NuxtLink

@@ -7,10 +7,7 @@
     >
       Need an account?
     </NuxtLink>
-    <form
-      @submit.prevent="handleSubmitLogin"
-      class="flex flex-col flex-grow gap-3"
-    >
+    <form @submit.prevent="login(user)" class="flex flex-col flex-grow gap-3">
       <input
         v-model="user.email"
         type="text"
@@ -55,13 +52,4 @@ const user = reactive({
   email: "",
   password: "",
 });
-const handleSubmitLogin = async () => {
-  const { res } = await login(user);
-  if (res.status === 200) {
-    console.log(res.msg);
-    navigateTo('/')
-  } else {
-    console.log(res.msg);
-  }
-};
 </script>

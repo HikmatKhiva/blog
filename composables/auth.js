@@ -1,40 +1,45 @@
 export const useAuth = () => {
   const client = useSupabaseClient();
-  const res = reactive({
-    msg: "",
-    status: null,
-  });
+  const user = useSupabaseUser();
   // login
   const login = async (user) => {
     try {
-      await client.auth.signInWithPassword({
-        email: user.email,
-        password: user.password,
-      });
-      res.msg = "success login";
-      res.status = 200;
+      const { email, password } = user;
+      if (!email.length || !password.length) {
+        return useNuxtApp().$toast.info("please fill out input fields");
+      }
       const { data } = await client.auth.signInWithPassword({
         email,
         password,
       });
       if (data.user) {
+        useNuxtApp().$toast.success(`Success`);
         navigateTo("/");
       }
     } catch (err) {
-      console.log(err);
-      res.status = 400;
-      res.msg = "error login";
+      useNuxtApp().$toast.error(err.message || "something went wrong");
     }
-    return { res };
   };
   // logout
+  const logout = async () => {
+    try {
+      await client.auth.signOut();
+      useNuxtApp().$toast.success(`${user.value.email} logout!`, {
+        delay: 2000,
+      });
+      navigateTo("/");
+    } catch (err) {
+      navigateTo("/");
+      useNuxtApp().$toast.error(err.message || "something went wrong");
+    }
+  };
   //register
   const register = async (newUser) => {
-    const { email, password, username } = newUser;
-    if (!email.length || !password.length || !username.length) {
-      return { msg: "please fill out fields" };
-    }
     try {
+      const { email, password, username } = newUser;
+      if (!email.length || !password.length || !username.length) {
+        return useNuxtApp().$toast.info("please fill out input fields");
+      }
       const { data } = await client.auth.signUp({
         email,
         password,
@@ -49,16 +54,13 @@ export const useAuth = () => {
         .from("users")
         .insert([{ email: email, username: username, id: data.user.id }])
         .select("*");
-      res.msg = "success register";
-      res.status = 200;
-    } catch (err) {
-      res.msg = "error register";
-      res.status = 400;
-      loading.value = false;
+      useNuxtApp().$toast.success(`Success register ${username}`);
       navigateTo("/");
+    } catch (err) {
+      navigateTo("/");
+      useNuxtApp().$toast.error(err.message || "something went wrong");
     }
-    return { res };
   };
   // return data
-  return {register, login };
+  return { register, login, logout };
 };
