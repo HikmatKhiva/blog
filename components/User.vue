@@ -11,7 +11,23 @@
         <p class="text-xs text-gray-300">Fri Dec 09 2022</p>
       </div>
     </div>
-    <div class="flex gap-1">
+    <div class="flex gap-1" v-if="edit">
+      <NuxtLink
+        :to="'/editor/' + article?.data[0]?.title"
+        class="border text-xs flex items-center gap-2 p-1 rounded outline-none px-2 text-[#cccc] border-[#ccc] hover:bg-[#ccc] hover:text-white transition-all duration-300"
+      >
+        <Icon name="ph:pencil-duotone" size="16" />
+        Edit
+      </NuxtLink>
+      <button
+        @click="$emit('deleteBlog')"
+        class="border text-xs flex items-center gap-2 p-1 rounded outline-none text-red-500 border-red-500 hover:bg-red-500 hover:text-white transition-all duration-300"
+      >
+        <Icon name="ant-design:delete-filled" size="16" />
+        delete
+      </button>
+    </div>
+    <div class="flex gap-1" v-else>
       <button
         class="border text-xs flex items-center gap-2 p-1 rounded outline-none px-2 text-[#cccc] border-[#ccc] hover:bg-[#ccc] hover:text-white transition-all duration-300"
       >
@@ -27,11 +43,14 @@
     </div>
   </div>
 </template>
-
 <script setup>
-const props = defineProps({
+defineProps({
   article: {
     type: Object,
+  },
+  edit: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>
