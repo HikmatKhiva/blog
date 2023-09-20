@@ -1,6 +1,6 @@
 <template>
   <section id="myBlog">
-    <div class="blogs" v-if="blogs.data?.length">
+    <div class="blogs" v-if="blogs?.data?.length">
       <Blog v-for="(blog, index) in blogs.data" :key="index" :blog="blog" />
     </div>
     <p v-else-if="pending">Loading</p>
@@ -15,7 +15,7 @@ const {
   error,
   pending,
 } = await useAsyncData(
-  "blog",
+  "blogs",
   async () => await client.from("blog").select("*").eq("user_id", user.value.id)
 );
 </script>

@@ -4,7 +4,7 @@
       tag="div"
       name="fade"
       class="blogs"
-      v-if="globalBlogs.data?.length"
+      v-if="globalBlogs?.data?.length"
     >
       <Blog
         v-for="(blog, index) in globalBlogs.data"
@@ -24,6 +24,5 @@ const {
   pending,
 } = await useAsyncData(
   "globalBlogs",
-  async () => await supabase.from("blog").select("*")
-);
+  async () => await supabase.from("blog").select("*"));
 </script>
