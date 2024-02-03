@@ -8,7 +8,16 @@
         <h3 class="leading-none text-base text-green-500">
           {{ article.data[0].username }}
         </h3>
-        <p class="text-xs text-gray-300">Fri Dec 09 2022</p>
+        <p class="text-xs text-gray-300">
+          {{
+            new Date(article.data[0].created_at).toLocaleString("en-Us", {
+              weekday: "short",
+              month: "short",
+              day: "2-digit",
+              year: "numeric",
+            })
+          }}
+        </p>
       </div>
     </div>
     <div class="flex gap-1" v-if="edit">
@@ -27,7 +36,7 @@
         delete
       </button>
     </div>
-    <div class="flex gap-1" v-else>
+    <!-- <div class="flex gap-1" v-else>
       <button
         class="border text-xs flex items-center gap-2 p-1 rounded outline-none px-2 text-[#cccc] border-[#ccc] hover:bg-[#ccc] hover:text-white transition-all duration-300"
       >
@@ -36,15 +45,20 @@
       </button>
       <button
         class="border text-xs flex items-center gap-2 p-1 rounded outline-none text-green-500 border-green-500 hover:bg-green-500 hover:text-white transition-all duration-300"
+        :class="{
+          'bg-green-500 text-white': false,
+        }"
       >
         <Icon name="healthicons:heart" size="16" />
-        {{ article.data[0].like }}
+        0
       </button>
-    </div>
+    </div> -->
   </div>
 </template>
 <script setup>
-defineProps({
+const user = useSupabaseUser();
+console.log();
+const props = defineProps({
   article: {
     type: Object,
   },

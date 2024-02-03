@@ -7,11 +7,20 @@
         <Icon name="material-symbols:account-circle-outline" size="30" />
         <!-- <img src="" alt=""> -->
         <!-- UserName and date time-->
-        <div class="">
+        <div>
           <h2 class="md:text-lg text-sm leading-none text-green-500">
             {{ blog?.username }}
           </h2>
-          <p class="md:text-xs text-[10px] text-gray-400">Mon Dec 28 2020</p>
+          <p class="md:text-xs text-[10px] text-gray-400">
+            {{
+              new Date(blog.created_at).toLocaleString("en-Us", {
+                weekday: "short",
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+              })
+            }}
+          </p>
         </div>
       </div>
       <!-- Article -->
@@ -27,16 +36,20 @@
         >
       </div>
     </div>
-    <button
+    <!-- <button
       class="flex border border-green-500 px-2 text-green-500 items-center p-1 rounded gap-1 hover:bg-green-500 hover:text-white transition-all duration-300"
+      :class="{ 'bg-green-500 text-white': isUserClickLike.length }"
+      name="like_button"
+      type="button"
+      @click="handleLike(blog?.id)"
     >
       <Icon name="icon-park-solid:like" size="12" />
-      {{ blog?.like }}
-    </button>
+      {{ likes.data?.length }}
+    </button> -->
   </div>
 </template>
 <script setup>
-defineProps({
+const props = defineProps({
   blog: {
     type: Object,
   },

@@ -1,5 +1,6 @@
 <template>
   <div class="min-h-[100vh] flex flex-col">
+    <NuxtLoadingIndicator :height="5" />
     <header class="py-5">
       <div class="container mx-auto flex justify-between items-center">
         <h1>
